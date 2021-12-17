@@ -2,6 +2,8 @@
 
 ## Abstract:
 
+In Chinese, character is a different concept other than letter or word. If anything, chinese characters are like bound morphemes. Chinese characters do not constitute an alphabet or a compact syllabary. Rather, the writing system is roughly logosyllabic; that is, a character generally represents one syllable of spoken Chinese and may be a word on its own or a part of a polysyllabic word.
+
 ## Related Work:
 
 ## Experiments:
