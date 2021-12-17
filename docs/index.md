@@ -12,10 +12,14 @@
 - Examples data:
 
 - Analysis of data:
-| Number of words (EN) | Number of unique words (EN) | Number of words (CN) | Number of unique words (CN) |
-| --- | ----------- | ----------- | ----------- |
-| Header | Title | ----------- | ----------- |
-| Paragraph | Text | ----------- | ----------- |
+
+Number of words (EN) | Number of unique words (EN) | Number of words (CN) | Number of unique words (CN) 
+--- | --- | --- |--- 
+8080917 | 70761 | 7640775 | 122432 
+
+Number of words (EN) | Number of unique words (EN) | Number of characters (CN) | Number of unique character (CN) 
+--- | --- | --- |--- 
+8080917 | 70761 | 13406447 | 4723
 
 #### Preprocessing data:
 
