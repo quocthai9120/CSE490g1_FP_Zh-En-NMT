@@ -9,6 +9,8 @@
 ### Experiment setup:
 
 #### Dataset:
+- Examples data:
+
 - Analysis of data:
 | Number of words (EN) | Number of unique words (EN) | Number of words (CN) | Number of unique words (CN) |
 | --- | ----------- | ----------- | ----------- |
@@ -51,6 +53,9 @@
 
 ## Evaluation:
 - BLEU score
+  +. Make plot for different n-grams
+  +. Short sentences / medium sentences / long sentences
+  
 - Examples
 
 ## Conclusion:
