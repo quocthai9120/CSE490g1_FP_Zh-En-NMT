@@ -49,7 +49,7 @@ Analyzing our data gives us the thought that we need to create a model that coul
 ## Experiments:
 
 ### Experiment setup:
-
+Our final model is a Transformer-based Sequence-to-Sequence model with word-level tokenized sentences. The progress can be described as follow: 
 #### Preprocessing data:
 1. shuffle the data before tokenizing
 2. split our dataset into training dataset (80%),validation dataset(10%) and testing dataset (10%) 
