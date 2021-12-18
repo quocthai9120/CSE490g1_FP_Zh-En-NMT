@@ -30,7 +30,7 @@ Below, we show several examples of the dataset we are using:
       
 Before diving into constructing our model, we have done several analysis on the dataset. After analyzing, we noticed that Chinese sentences in our dataset are long on average. Particularly, the average number of words in a Chinese sentence is around 50 words. The English sentences are also really long on average, too, with an average of 25 words / sentence. When breaking down to character-level for Chinese, we can also see that it has an average of ... characters per sentence.
 
-![histogram of source language character level](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/source_language_hist.png?raw=true)
+![histogram of source language character level](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/chinese_character_level.png?raw=true)
 ![histogram of source language word level](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/chinese_word_level.png?raw=true)
 ![histogram of target language](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/english_word_level.png?raw=true)
 
