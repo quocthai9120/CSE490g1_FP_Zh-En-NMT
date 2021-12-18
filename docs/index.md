@@ -67,13 +67,13 @@ We implemented the progress of tokenizing our sentences as follow:
 
 ### Model design:
 #### Model architecture:
-- Our model is a transformer-based with 3 encode layer and 3 decode layers plus one linear output layer on top. Each layer's self-attention has 8 heads.
-        Our embedding size is 512 for both source alnguage and target language.
-     
-        
-<p align="center">
-  <img src="https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png" />
-</p>
+- After looking at our anlayzed data, we decided to create a transformer-based model to deal with the complexities within a single sentence. Particularly, since our sentences are long on average, we want to have 8 self-attention heads and an embedding size of 512 to "learn" the complex distanct dependency of components within a sentence.
+  
+- On the other hand, we also noticed that our dataset is not that big (particularly, we only have over 300 thousands instances in our dataset), so we decided to make our model to have only 3 encoder layers and 3 decoder layers (plus one linear output layer on top) to avoid overfitting.
+  
+Besides, we create a visualization to demonstrate how our model would be end-to-end. Note that, for the Transformer block, we use the exact same architecture as the one shown in the original paper with our modifications mentioned above.
+
+![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png)
         
 #### Hyperparameters:
 - adam optimizer with constant learning rate 0.0001
