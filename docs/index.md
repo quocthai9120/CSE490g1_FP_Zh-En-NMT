@@ -137,3 +137,6 @@ In the video, we have done the following steps:
   4. Translate a custom sentence inputted by user
 
 ## References:
+1. Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.](https://aclanthology.org/N19-1423/)
+
+2. Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. [Attention is all you need.](https://arxiv.org/abs/1706.03762)
