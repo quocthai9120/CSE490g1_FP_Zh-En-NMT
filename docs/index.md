@@ -87,11 +87,15 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 - cross entropy loss
 - Batch size of 4 with gradient accumulation
 
+## Training
+        
+![histogram of target language](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/training_graph.png?raw=true)  
+
 ## Evaluation:
 - BLEU score
   +. Short sentences / medium sentences / long sentences
         
-Average sentence length | Short sentences (23 words) | medium sentences (131.147 words) | long sentences (318 words)
+Average target sentence length | Short sentences (23 words) | medium sentences (131.147 words) | long sentences (318 words)
 --- | --- | --- |--- 
 BLEU | 0.8032287203698106 | 0.6645120337007445 | 0.5766336502838663
   
@@ -99,7 +103,16 @@ BLEU | 0.8032287203698106 | 0.6645120337007445 | 0.5766336502838663
         
         
         Source sentence: 危机爆发前，欧洲似乎是首度成功实现政治一体化平衡状态可能性最大的候选人。
+        Groud truth translation: Before the crisis, Europe looked like the most likely candidate to make a successful transition to the first equilibrium – greater political unification.
         Our translation: Before the crisis, Europe seems to be the most likely candidate for success in achieving political integration.
+        
+        Source sentence: 尽管希腊救助计划已经完成，但欧元危机并未真正落幕，尤其是意大利可能成为风险的主要来源
+        Groud truth translation: The euro crisis is not truly over, despite the completion of Greece’s bailout program, with Italy, in particular, representing a major source of risk.
+        Our translation: Although the Greek rescue program has been completed, the euro crisis did not end, especially Italy may become the main source of risk.
+        
+        Source sentence: “重启”与欧洲后院各国的关系
+        Ground truth translation: A “Reset” Button for Europe’s Backyard.
+        Our translation: “ reset ” relations with Europe ’s neighbors.
         
 
 ## Conclusion:
