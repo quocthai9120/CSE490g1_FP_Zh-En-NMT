@@ -4,13 +4,14 @@
 Machine Translation is one of the hot topic recently in NLP, especially during the era of neural models. In fact, with the rise of Transformer-based models to keep its top-rank performance, Transformer-based models are being used more and more in many language-related tasks. Within this field, we noticed that the Chinese language is different than the ones using Latin-based alphabet. In Chinese, character is a different concept other than letter or word. If anything, chinese characters are like bound morphemes. Chinese characters do not constitute an alphabet or a compact syllabary. Rather, the writing system is roughly logosyllabic; that is, a character generally represents one syllable of spoken Chinese and may be a word on its own or a part of a polysyllabic word. Understanding this issue, we want to investigate how a Transformer-based model would perfom when dealing with the Chinese-English neural machine translation task.
 
 ## Related Work:
+### Model architecture
+Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (cite). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (cite). Nowadays, researchers have shown how powerful transformer models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (cite).
 
+When looking for ways to break our sentences into tokens, we have found several useful tokenizers online.
+1. Spacy, which gives us word-level tokens.
+2. BERT Chinese, which gives us character-level tokens.
 
-## Experiments:
-
-### Experiment setup:
-
-#### Dataset:
+### Dataset:
 - Examples data:
 
 - Analysis of data:
@@ -22,6 +23,10 @@ Number of words (EN) | Number of unique words (EN) | Number of words (CN) | Numb
 Number of words (EN) | Number of unique words (EN) | Number of characters (CN) | Number of unique character (CN) 
 --- | --- | --- |--- 
 8080917 | 70761 | 13406447 | 4723
+
+## Experiments:
+
+### Experiment setup:
 
 #### Preprocessing data:
 
