@@ -139,6 +139,9 @@ In the video, we have done the following steps:
   3. Translate the first 10 sentences in our test set
   4. Translate a custom sentence inputted by user
 
+## Video:
+We also include a 3-minute long video where we explained our project. Readers can access our video here: [video](https://youtu.be/WnqYMmEbkCI)
+
 ## References:
 1. Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.](https://aclanthology.org/N19-1423/)
 
