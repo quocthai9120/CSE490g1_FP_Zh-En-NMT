@@ -91,8 +91,10 @@ Training our model for 6 epochs, we achieved a training loss of around 2.596 and
 After finishing training, we evaluate our model performance on an unseen test set. The test loss is around 2.671.
   
 Moreover, since we are performance translation task, we want to have a better metric for evaluating the translation performance. We decided that BLEU score is a good candidate to be used here. A reminder of BLEU score is that:
+
   
-  BLEU Score = ....
+![BLEU score formula](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/formula.png?raw=true)  
+
   
 Using our trained model with the test set, we achieved a BLEU-score of 0.652675.
   
