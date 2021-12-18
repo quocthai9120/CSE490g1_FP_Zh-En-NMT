@@ -74,14 +74,17 @@ We implemented the progress of tokenizing our sentences as follow:
 Besides, we create a visualization to demonstrate how our model would be end-to-end. Note that, for the Transformer block, we use the exact same architecture as the one shown in the original paper with our modifications mentioned above.
 
 ![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png)
-        
-#### Hyperparameters:
-- adam optimizer with constant learning rate 0.0001
-- cross entropy loss
-- Batch size of 4 with gradient accumulation
 
 ## Training
-        
+We train our model using Google Collaborative GPU. Each training epoch takes us around 1 hour. After several times of training and finetuning hyperparameters, we end up with the following setup:
+  
+### Hyperparameters:
+We train our model described above with the following hyperparameters:
+- We use Adam optimizer with learning rate to be 0.0001 as we heuristically believe this would perform better than using SGD.
+- We decide to use the Cross-Entropy loss. This is because we want to "learn" the probability of each word to be predicted from the targeted language, and Cross-Entropy reflects that good.
+- Finally, we use a batch size of 4 with gradient accumulation step of 64. This is because we are training on the Google Collaborate GPU, we cannot make our batch size to be bigger. However, traihing with just a batch size 4 would make our model inconsitent in learning. For that reason, using gradient accumulation, we make our model to update its parameters every 64 accumulation steps. In the other words, we make our model to train with a batch size of 256. This makes the training progress become faster and stedier.
+
+Training our model for 6 epochs, we achieved a training loss of around 2.596 and a validation loss of arouhnd 2.780. We consider this would be a good result at this point.
 ![histogram of target language](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/training_graph.png?raw=true)  
 
 ## Evaluation:
