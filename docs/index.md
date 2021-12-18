@@ -73,7 +73,7 @@ We implemented the progress of tokenizing our sentences as follow:
   
 Besides, we create a visualization to demonstrate how our model would be end-to-end. Note that, for the Transformer block, we use the exact same architecture as the one shown in the original paper with our modifications mentioned above.
 
-![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png)
+![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png?raw=true)
 
 ## Training
 We train our model using Google Collaborative GPU. Each training epoch takes us around 1 hour. After several times of training and finetuning hyperparameters, we end up with the following setup:
