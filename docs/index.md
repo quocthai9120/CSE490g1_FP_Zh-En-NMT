@@ -12,9 +12,21 @@ When looking for ways to break our sentences into tokens, we have found several 
 2. BERT Chinese, which gives us character-level tokens.
 
 ### Dataset:
-- Examples data:
-
+- Examples data: 
+        
+  
+      And much of the anger that drove people to the streets, led countries to the point of collapse, and drove millions from their homes was motivated by a desire for clear rights, including those protecting property.
+      而让人民涌向街头，让国家走向崩溃，让数百万人走出家园的愤怒背后正是对明晰的权利的渴望，包括保护财产的权利。
+      The pessimists claim that this is becoming harder and more expensive; the optimists hold that the law will remain valid, with chips moving to three dimensions.
+      悲观主义者认为增长将变得更为困难和昂贵；乐观主义者则认为这一定律将随着芯片向3D阵列发展而继续有效。
+      Russia and China today are united not only by their energy deals, but also by both countries’ conviction that their time has come, and that the outside world needs them more than they need the outside world, particularly the US.
+      今天，将俄国和中国联系在一起的已经不仅仅是两国的能源协议，这两个国家都认定，属于他们的时代已经到来。 世界需要他们更甚于他们需要世界，而美国尤其如此。
+      Yet that isn’t helping the PD.
+      但这并没有对PD起到帮助作用。
 - Analysis of data:
+
+![histogram of source language](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/source_language_hist.png?raw=true)
+![histogram of target language](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/target_language_hist.png?raw=true)
 
 Number of words (EN) | Number of unique words (EN) | Number of words (CN) | Number of unique words (CN) 
 --- | --- | --- |--- 
