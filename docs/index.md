@@ -84,12 +84,19 @@ We train our model described above with the following hyperparameters:
 - We decide to use the Cross-Entropy loss. This is because we want to "learn" the probability of each word to be predicted from the targeted language, and Cross-Entropy reflects that good.
 - Finally, we use a batch size of 4 with gradient accumulation step of 64. This is because we are training on the Google Collaborate GPU, we cannot make our batch size to be bigger. However, traihing with just a batch size 4 would make our model inconsitent in learning. For that reason, using gradient accumulation, we make our model to update its parameters every 64 accumulation steps. In the other words, we make our model to train with a batch size of 256. This makes the training progress become faster and stedier.
 
-Training our model for 6 epochs, we achieved a training loss of around 2.596 and a validation loss of arouhnd 2.780. We consider this would be a good result at this point.
+Training our model for 6 epochs, we achieved a training loss of around 2.596 and a validation loss of around 2.780. We consider this would be a good result at this point.
 ![histogram of target language](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/training_graph.png?raw=true)  
 
 ## Evaluation:
-- BLEU score
-  +. Short sentences / medium sentences / long sentences
+After finishing training, we evaluate our model performance on an unseen test set. The test loss is around 2.671.
+  
+Moreover, since we are performance translation task, we want to have a better metric for evaluating the translation performance. We decided that BLEU score is a good candidate to be used here. A reminder of BLEU score is that:
+  
+  BLEU Score = ....
+  
+Using our trained model with the test set, we achieved a BLEU-score of 0.652675.
+  
+We also bring this to the next level by evaluating our model performance toward short sentences, medium sentences, and long sentences. Particularly, we compute our BLEU-score in these categories and have the following result:
         
 Average target sentence length | Short sentences (23 words) | medium sentences (131.147 words) | long sentences (318 words)
 --- | --- | --- |--- 
