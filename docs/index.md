@@ -71,14 +71,15 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 
 ### Model design:
 #### Model architecture:
-- Transformer-based
-- Linear layer on top
+- our model is a transformer-based with 3 encode layer and 3 decode layers plus one linear output layer on top. each layer's self-attention has 8 heads.
+        our embedding size is 512 for both source alnguage and target language.
 - Mention how many heads, how many emb layers
 - Add a graph of our model
 
 #### Hyperparameters:
-- ....
-- Gradient accumulation
+- adam optimizer with constant learning rate 0.0001
+- cross entropy loss
+- Batch size of 4 with gradient accumulation
 
 ## Evaluation:
 - BLEU score
