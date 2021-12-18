@@ -3,13 +3,11 @@
 ## Abstract:
 Machine Translation is one of the hot topic recently in NLP, especially during the era of neural models. In fact, with the rise of Transformer-based models to keep its top-rank performance, Transformer-based models are being used more and more in many language-related tasks. Within this field, we noticed that the Chinese language is different than the ones using Latin-based alphabet. In Chinese, character is a different concept other than letter or word. If anything, chinese characters are like bound morphemes. Chinese characters do not constitute an alphabet or a compact syllabary. Rather, the writing system is roughly logosyllabic; that is, a character generally represents one syllable of spoken Chinese and may be a word on its own or a part of a polysyllabic word. Understanding this issue, we want to investigate how a Transformer-based model would perfom when dealing with the Chinese-English neural machine translation task.
 
+We start our experiment by analyzing our dataset to determine the architectures and pre-processing directions we should do. We then perform pre-proessing steps to clean up our data and perform tokenization. We implement a "RNN encoder + Attention RNN decoder" architecture as a baseline model. We then create a Transformer-based model (our proposed architecture in this report). Finally, we propose a future work of using a character-level tokenization with Transformer-based model. All of our codes are included inside our Git repo for reproducing and further researching purposes. Readers can access our Git repo by following this URL: [ZH-EN Neural Machine Translation - Github](https://github.com/quocthai9120/cse490g1_zh_en_nmt.). 
+
 ## Related Work:
 ### Model architecture
-Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (cite). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (cite). Nowadays, researchers have shown how powerful transformer models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (cite).
-
-When looking for ways to break our sentences into tokens, we have found several useful tokenizers online.
-1. Spacy, which gives us word-level tokens.
-2. BERT Chinese, which gives us character-level tokens.
+Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (cite). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (cite). Nowadays, researchers have shown how powerful Transformer-based models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (cite).
 
 ### Dataset:
 We use the dataset from WMT21 (https://www.statmt.org/wmt21/translation-task.html). The data sources are new-commentary corpus which are released for the WMT series of shared task. The one we are using is a parallel corpus containing 313674 parallel Chinese-English sentences. It can be found and downloaded using this following url: https://data.statmt.org/news-commentary/v16/.
@@ -66,6 +64,9 @@ We implemented the progress of tokenizing our sentences as follow:
   5. Create a transformation function to transform input sentences within a batch into tokenized tensors within that same batch. Particularly, each batch's tokenized tensor would be created by concating a tensor of beginning tags, a tensor of token ids for each tokenized sentence within that batch, and a tensor of ending tags.
 
 ### Model design:
+#### Baseline:
+We use a "RNN encoder and Attention RNN decoder" as our baseline. We train our model using SGD optimizer and set the learning rate to 0.01. Training until convergence, we got a BLEU-score of around 0.12. Since our paper's attention is not this part, we would not go into detail. Instead, we would leave the implementation notebook here for readers to investigate if they have interest.
+
 #### Model architecture:
 - After looking at our anlayzed data, we decided to create a transformer-based model to deal with the complexities within a single sentence. Particularly, since our sentences are long on average, we want to have 8 self-attention heads and an embedding size of 512 to "learn" the complex distanct dependency of components within a sentence.
   
@@ -73,7 +74,7 @@ We implemented the progress of tokenizing our sentences as follow:
   
 Besides, we create a visualization to demonstrate how our model would be end-to-end. Note that, for the Transformer block, we use the exact same architecture as the one shown in the original paper with our modifications mentioned above.
 
-![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png)
+![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png?raw=true)
 
 ## Training
 We train our model using Google Collaborative GPU. Each training epoch takes us around 1 hour. After several times of training and finetuning hyperparameters, we end up with the following setup:
@@ -100,7 +101,7 @@ Using our trained model with the test set, we achieved a BLEU-score of 0.652675.
   
 We also bring this to the next level by evaluating our model performance toward short sentences, medium sentences, and long sentences. Particularly, we compute our BLEU-score in these categories and have the following result:
         
-Average target sentence length | Short sentences (23 words) | medium sentences (131.147 words) | long sentences (318 words)
+Average target sentence length | Short sentences (5 words) | medium sentences (25 words) | long sentences (58 words)
 --- | --- | --- |--- 
 BLEU | **0.8032287203698106** | 0.6645120337007445 | 0.5766336502838663
   
@@ -119,9 +120,26 @@ Below are some translations generated by our final model:
         Ground truth translation: A “Reset” Button for Europe’s Backyard.
         Our translation: “ reset ” relations with Europe ’s neighbors.
         
-Looking at the translations, we can see the pattern that our model works best for sentences with less than 10-15 words, it would still give fairly good translations for longer sentences.
+Looking at the translations, we can see the pattern that our model works best for sentences with less than 5-10 **words**, it would still give fairly good translations for longer sentences.
 
 ## Conclusion:
 Using transformer model allows us to learn more of long distance dependancies comparing to RNN-based model. This improves our performance by ...
 
+## Demo:
+Below, we are showing a demo of how to use our trained model for translation. Simply, you can just load the trained model and use that trained model for translation as the following video (click on the thumbnail to see the video):
+[![Demo Translation video](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png)](https://youtu.be/-9Wi0wKO9yA)
+
+In the video, we have done the following steps:
+  1. Load the trained model
+  2. Run the code of implementing translation method
+  3. Translate the first 10 sentences in our test set
+  4. Translate a custom sentence inputted by user
+
 ## References:
+1. Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.](https://aclanthology.org/N19-1423/)
+
+2. Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. 2017. [Attention is all you need.](https://arxiv.org/abs/1706.03762)
+
+3.  Neco, R. P., & Forcada, M. L. (1997, June). Asynchronous translations with recurrent neural nets. In Neural Networks, 1997., International Conference on (Vol. 4, pp. 2535-2540). IEEE.
+
+4. Sutskever, I., Vinyals, O., & Le, Q. V. (2014). Sequence to sequence learning with neural networks. In Advances in neural information processing systems(pp. 3104-3112).
