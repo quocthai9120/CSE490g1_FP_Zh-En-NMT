@@ -7,11 +7,7 @@ We start our experiment by analyzing our dataset to determine the architectures 
 
 ## Related Work:
 ### Model architecture
-Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (cite). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (cite). Nowadays, researchers have shown how powerful transformer models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (cite).
-
-When looking for ways to break our sentences into tokens, we have found several useful tokenizers online.
-1. Spacy, which gives us word-level tokens.
-2. BERT Chinese, which gives us character-level tokens.
+Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (cite). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (cite). Nowadays, researchers have shown how powerful Transformer-based models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (cite).
 
 ### Dataset:
 We use the dataset from WMT21 (https://www.statmt.org/wmt21/translation-task.html). The data sources are new-commentary corpus which are released for the WMT series of shared task. The one we are using is a parallel corpus containing 313674 parallel Chinese-English sentences. It can be found and downloaded using this following url: https://data.statmt.org/news-commentary/v16/.
@@ -68,6 +64,9 @@ We implemented the progress of tokenizing our sentences as follow:
   5. Create a transformation function to transform input sentences within a batch into tokenized tensors within that same batch. Particularly, each batch's tokenized tensor would be created by concating a tensor of beginning tags, a tensor of token ids for each tokenized sentence within that batch, and a tensor of ending tags.
 
 ### Model design:
+#### Baseline:
+We use a "RNN encoder and Attention RNN decoder" as our baseline. We train our model using SGD optimizer and set the learning rate to 0.01. Training until convergence, we got a BLEU-score of around 0.12. Since our paper's attention is not this part, we would not go into detail. Instead, we would leave the implementation notebook here for readers to investigate if they have interest.
+
 #### Model architecture:
 - After looking at our anlayzed data, we decided to create a transformer-based model to deal with the complexities within a single sentence. Particularly, since our sentences are long on average, we want to have 8 self-attention heads and an embedding size of 512 to "learn" the complex distanct dependency of components within a sentence.
   
