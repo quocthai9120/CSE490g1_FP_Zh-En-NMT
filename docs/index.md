@@ -126,4 +126,7 @@ Looking at the translations, we can see the pattern that our model works best fo
 ## Conclusion:
 Using transformer model allows us to learn more of long distance dependancies comparing to RNN-based model. This improves our performance by ...
 
+## Demo:
+[![Demo Translation video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://youtu.be/-9Wi0wKO9yA)
+
 ## References:
