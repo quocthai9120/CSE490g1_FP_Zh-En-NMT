@@ -7,7 +7,7 @@ We start our experiment by analyzing our dataset to determine the architectures 
 
 ## Related Work:
 ### Model architecture
-Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (cite). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (cite). Nowadays, researchers have shown how powerful Transformer-based models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (cite).
+Machine Translation has a long history of development. Previously, researchers came up with Recurrent networks to extract the sequential information within sentence (Neco, R. P., & Forcada, M. L., 1997). Encoder-Decoder arrives to give us a better way to structure our architecture in which we can condense information using embedding then use these latent features for decoding (translating to another language) (Sutskever, I., Vinyals, O., & Le, Q. V., 2014). Nowadays, researchers have shown how powerful Transformer-based models are as these models could learn the relationship of tokens within sentences while keeping track of sequential information (Ashish Vaswani, et al., 2017).
 
 ### Dataset:
 We use the dataset from WMT21 (https://www.statmt.org/wmt21/translation-task.html). The data sources are new-commentary corpus which are released for the WMT series of shared task. The one we are using is a parallel corpus containing 313674 parallel Chinese-English sentences. It can be found and downloaded using this following url: https://data.statmt.org/news-commentary/v16/.
@@ -65,7 +65,7 @@ We implemented the progress of tokenizing our sentences as follow:
 
 ### Model design:
 #### Baseline:
-We use a "RNN encoder and Attention RNN decoder" as our baseline. We train our model using SGD optimizer and set the learning rate to 0.01. Training until convergence, we got a BLEU-score of around 0.12. Since our paper's attention is not this part, we would not go into detail. Instead, we would leave the implementation notebook here for readers to investigate if they have interest.
+We use a "RNN encoder and Attention RNN decoder" as our baseline. We train our model using SGD optimizer and set the learning rate to 0.01. Training until convergence, we got a BLEU-score of around 0.08. Since our paper's attention is not this part, we would not go into detail. Instead, we would leave the implementation notebook here for readers to investigate if they have interest. The url to the baseline notebook is left here: [RNN baseline](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/zh_en_machine_translation_baseline_rnn.ipynb).
 
 #### Model architecture:
 - After looking at our anlayzed data, we decided to create a transformer-based model to deal with the complexities within a single sentence. Particularly, since our sentences are long on average, we want to have 8 self-attention heads and an embedding size of 512 to "learn" the complex distanct dependency of components within a sentence.
@@ -75,6 +75,8 @@ We use a "RNN encoder and Attention RNN decoder" as our baseline. We train our m
 Besides, we create a visualization to demonstrate how our model would be end-to-end. Note that, for the Transformer block, we use the exact same architecture as the one shown in the original paper with our modifications mentioned above.
 
 ![Model architecture](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png?raw=true)
+
+The notebook for our proposed model can be accessed through the following url: [Proposed model notebook](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/zh_en_machine_translation_word_level_transformer.ipynb).
 
 ## Training
 We train our model using Google Collaborative GPU. Each training epoch takes us around 1 hour. After several times of training and finetuning hyperparameters, we end up with the following setup:
@@ -97,13 +99,13 @@ Moreover, since we are performance translation task, we want to have a better me
 ![BLEU score formula](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/formula.png?raw=true)  
 
   
-Using our trained model with the test set, we achieved a BLEU-score of 0.652675.
+Using our trained model with the test set, we achieved a BLEU-score of 0.167079.
   
 We also bring this to the next level by evaluating our model performance toward short sentences, medium sentences, and long sentences. Particularly, we compute our BLEU-score in these categories and have the following result:
         
 Average target sentence length | Short sentences (5 words) | medium sentences (25 words) | long sentences (58 words)
 --- | --- | --- |--- 
-BLEU | **0.8032287203698106** | 0.6645120337007445 | 0.5766336502838663
+BLEU | 0.1316437 | 0.1730123877 | 0.14096469
   
   
 Below are some translations generated by our final model:
@@ -120,10 +122,12 @@ Below are some translations generated by our final model:
         Ground truth translation: A “Reset” Button for Europe’s Backyard.
         Our translation: “ reset ” relations with Europe ’s neighbors.
         
-Looking at the translations, we can see the pattern that our model works best for sentences with less than 5-10 **words**, it would still give fairly good translations for longer sentences.
+Looking at the translations, we can see the pattern that our model works best for medium length sentences with around 23 **words**, it would still give fairly good translations for shorter and longer sentences. The reason that makes our model works best for medium length sentences would be due to the fact that for shorter sentences, BLEU-score cannot reflect synonyms as good translation, and for longer sentences, it may predict more wrong words.
 
 ## Conclusion:
-Using transformer model allows us to learn more of long distance dependancies comparing to RNN-based model. This improves our performance by ...
+Using transformer model allows us to learn more of long distance dependancies comparing to RNN-based model. Even though this only improves our performance BLEU-score by 0.08, evaluating the generated output by human lets us know that our model learns much better with the Transformer-based model. This leads to a conclusion that for translating long and complex sentences from a complex language like Chinese, using a Transformer-based model is a great approach to follow.
+
+For our future work, we are experimenting using character-level tokenization with Transformer-based model. However, this might requires a significant amount of modification, so we would not include a final version of that in this project. However, we would leave the url to our most recent notebook of that here: [character-level Transformer-based model](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/zh-en-machine-translation-char-level.ipynb).
 
 ## Demo:
 Below, we are showing a demo of how to use our trained model for translation. Simply, you can just load the trained model and use that trained model for translation as the following video (click on the thumbnail to see the video):
