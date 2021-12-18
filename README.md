@@ -8,3 +8,4 @@ We include our notebooks to show our following implementations:
 1. [RNN Encoder + Attention Decoder Seq2Seq model (baseline)]()
 2. [Word-level tokenization Transformer-based model (proposed model)]()
 3. [Character-level tokenization Transformer-based model (future work)](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/zh-en-machine-translation-char-level.ipynb)
+4. [Word-level tokenization Transformer-based model ](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/zh_en_machine_translation_word_level_transformer.ipynb)
