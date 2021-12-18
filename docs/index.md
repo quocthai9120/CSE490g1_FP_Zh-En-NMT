@@ -41,6 +41,12 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 ### Experiment setup:
 
 #### Preprocessing data:
+1. shuffle the data before tokenizing
+2. split our dataset into training dataset (80%),validation dataset(10%) and testing dataset (10%) 
+3. word-level tokenization
+4. Add begin of setence <bos> and end of sentence character <eos>
+5. pad the sentence to the max length of the current batch
+6. generate attention mask and padding mask
 
 ### Tokenizer:
 
@@ -76,7 +82,6 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 
 ## Evaluation:
 - BLEU score
-  +. Make plot for different n-grams
   +. Short sentences / medium sentences / long sentences
   
 - Examples
