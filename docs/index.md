@@ -71,11 +71,14 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 
 ### Model design:
 #### Model architecture:
-- our model is a transformer-based with 3 encode layer and 3 decode layers plus one linear output layer on top. each layer's self-attention has 8 heads.
-        our embedding size is 512 for both source alnguage and target language.
-- Mention how many heads, how many emb layers
-- Add a graph of our model
-
+- Our model is a transformer-based with 3 encode layer and 3 decode layers plus one linear output layer on top. Each layer's self-attention has 8 heads.
+        Our embedding size is 512 for both source alnguage and target language.
+     
+        
+<p align="center">
+  <img src="https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png" />
+</p>
+        
 #### Hyperparameters:
 - adam optimizer with constant learning rate 0.0001
 - cross entropy loss
@@ -84,6 +87,10 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 ## Evaluation:
 - BLEU score
   +. Short sentences / medium sentences / long sentences
+        
+Average sentence length | Short sentences (23 words) | medium sentences (131.147 words) | long sentences (318 words)
+--- | --- | --- |--- 
+BLEU | 0.8032287203698106 | 0.6645120337007445 | 0.5766336502838663
   
 - Examples
 
