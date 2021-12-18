@@ -59,11 +59,11 @@ We noticed that the dataset has consecutive sentences that are extracted from th
 We use a word-level tokenizer from Spacy to tokenize both Chinese and English sentences. A brief summary of the tokenizer is: (1) The Chinese tokenizer that we are using has a vocabulary size of 108,342; (2) The English Tokenizer that we are using has a vocabulary size of 65,583.
 
 We implemented the progress of tokenizing our sentences as follow:
-1. Add the sentences with a beginning tag (<bos>) and an ending tag (<eos>).
-2. Pad the sentence to the maximum length of the current batch. That is, the length of each batch is equal to the length of the longest sentence within the batch.
-3. Create a vocabulary map to map from words to tokens.
-4. Generate attention and padding mask to prevent leftward information flow in the decoder to preserve the auto-regressive property of the model.
-5. Create a transformation function to transform input sentences within a batch into tokenized tensors within that same batch. Particularly, each batch's tokenized tensor would be created by concating a tensor of beginning tags, a tensor of token ids for each tokenized sentence within that batch, and a tensor of ending tags.
+  1. Add the sentences with a beginning tag (<bos>) and an ending tag (<eos>).
+  2. Pad the sentence to the maximum length of the current batch. That is, the length of each batch is equal to the length of the longest sentence within the batch.
+  3. Create a vocabulary map to map from words to tokens.
+  4. Generate attention and padding mask to prevent leftward information flow in the decoder to preserve the auto-regressive property of the model.
+  5. Create a transformation function to transform input sentences within a batch into tokenized tensors within that same batch. Particularly, each batch's tokenized tensor would be created by concating a tensor of beginning tags, a tensor of token ids for each tokenized sentence within that batch, and a tensor of ending tags.
 
 ### Model design:
 #### Model architecture:
