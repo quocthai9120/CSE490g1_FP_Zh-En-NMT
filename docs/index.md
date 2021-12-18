@@ -28,7 +28,7 @@ Below, we show several examples of the dataset we are using:
       EN: Yet that isn’t helping the PD.
       CN: 但这并没有对PD起到帮助作用。
       
-Before diving into constructing our model, we have done several analysis on the dataset. After analyzing, we noticed that Chinese sentences in our dataset are long on average. Particularly, the average number of words in a Chinese sentence is around 50 words. The English sentences are also really long on average, too, with an average of 25 words / sentence. When breaking down to character-level for Chinese, we can also see that it has an average of ... characters per sentence.
+Before diving into constructing our model, we have done several analysis on the dataset. After analyzing, we noticed that Chinese sentences in our dataset are long on average. Particularly, the average number of words in a Chinese sentence is around 22 words. The English sentences are also really long on average, too, with an average of 25 words / sentence. When breaking down to character-level for Chinese, we can also see that it has an average of 50 characters per sentence.
 
 ![histogram of source language character level](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/chinese_character_level.png?raw=true)
 ![histogram of source language word level](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/chinese_word_level.png?raw=true)
@@ -47,37 +47,23 @@ Number of words (EN) | Number of unique words (EN) | Number of characters (CN) |
 Analyzing our data gives us the thought that we need to create a model that could deal with complex sentences so that it could learn deep features from our complex dataset.
 
 ## Experiments:
+Our final model is a Transformer-based Sequence-to-Sequence model with word-level tokenized sentences. The progress included cleaning the data, tokenizing, fitting the format to train, training the model, and evaluating the model. 
 
-### Experiment setup:
-Our final model is a Transformer-based Sequence-to-Sequence model with word-level tokenized sentences. The progress can be described as follow: 
-#### Preprocessing data:
-1. shuffle the data before tokenizing
-2. split our dataset into training dataset (80%),validation dataset(10%) and testing dataset (10%) 
-3. word-level tokenization
-4. Add begin of setence <bos> and end of sentence character <eos>
-5. pad the sentence to the max length of the current batch
-6. generate attention mask and padding mask
+### Preprocessing data:
+The first step of our experiment is to make the data to have the right format to fit into our model. We would do that as follow:
 
-### Tokenizer:
+#### Cleaning the data:
+We noticed that the dataset has consecutive sentences that are extracted from the same articles. To make the model generalize better, we shuffled our data before using it. Then, we just need to split our dataset into training dataset (80%),validation dataset(10%) and testing dataset (10%).
 
-#### Word-level tokenizer:
+#### Tokenizer:
+We use a word-level tokenizer from Spacy to tokenize both Chinese and English sentences. A brief summary of the tokenizer is: (1) The Chinese tokenizer that we are using has a vocabulary size of 108,342; (2) The English Tokenizer that we are using has a vocabulary size of 65,583.
 
-- We experimented a word-level tokenizer from Spacy to tokenize both Chinese and English sentences.
-- Vocab size:
-  +. Chinese: 108342
-  +. English: 65583
-- How do you process your tokenizing process:
-  +. Define special symnbols and indx
-  +. Create a vocab to store all the mapping from word to indexes
-- Perform tokenize for EN and CN
-
-#### Character-level tokenizer
-- We experimented a word-level tokenizer from Spacy to tokenize both Chinese and English sentences.
-- Vocab size:
-  +. Chinese: ...
-  +. English: ...
-- How do you process your tokenizing process:
-  +. Applying BERT tokenizer for each sentences
+We implemented the progress of tokenizing our sentences as follow:
+1. Add the sentences with a beginning tag (<bos>) and an ending tag (<eos>).
+2. Pad the sentence to the maximum length of the current batch. That is, the length of each batch is equal to the length of the longest sentence within the batch.
+3. Create a vocabulary map to map from words to tokens.
+4. Generate attention and padding mask to prevent leftward information flow in the decoder to preserve the auto-regressive property of the model.
+5. Create a transformation function to transform input sentences within a batch into tokenized tensors within that same batch. Particularly, each batch's tokenized tensor would be created by concating a tensor of beginning tags, a tensor of token ids for each tokenized sentence within that batch, and a tensor of ending tags.
 
 ### Model design:
 #### Model architecture:
