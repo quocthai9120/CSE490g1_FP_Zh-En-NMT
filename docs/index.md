@@ -127,6 +127,7 @@ Looking at the translations, we can see the pattern that our model works best fo
 Using transformer model allows us to learn more of long distance dependancies comparing to RNN-based model. This improves our performance by ...
 
 ## Demo:
+Below, we are showing a demo of how to use our trained model for translation. Simply, you can just load the trained model and use that trained model for translation as the following video (click on the thumbnail to see the video):
 [![Demo Translation video](https://github.com/quocthai9120/cse490g1_zh_en_nmt/blob/main/docs/graphs/model%20architecture.png)](https://youtu.be/-9Wi0wKO9yA)
 
 ## References:
